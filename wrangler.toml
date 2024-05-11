@@ -2,6 +2,14 @@ name = "quran"
 main = "src/worker.js"
 compatibility_date = "2024-05-11"
 workers_dev = true
+node_compat = true
+
 
 [placement]
 mode = "smart"
+
+[vars]
+QURL='https://github.com/ardfank/quran/raw/master/quran.json'
+
+[env.local.vars]
+QURL='https://squid.sa.ya/quran.json'

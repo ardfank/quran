@@ -10,6 +10,7 @@
 import index from "./index.html";
 export default {
   async fetch(request, env, ctx) {
+	const QURL=`${env.QURL}`;
 	const f = require('./f.js');
 	const url = new URL(request.url);
 	let surah=url.searchParams.get('surah');
@@ -17,17 +18,17 @@ export default {
 	let q=url.searchParams.get('q');
 	let hin="";
 	if(surah!=null && ayah===null && q===null){
-		f.surah(surah,function(g){
-			hin=g;
+		await f.surah(QURL,surah,(g)=>{
+			hin=JSON.stringify(g);
 		});
 	}else{
-		await f.main((g)=>{
+		await f.main(QURL,(g)=>{
 			hin=JSON.stringify(g);
 		});
 	}
     return new Response(hin, {
 		headers: {
-			"content-type": "text/plain;charset=UTF-8",
+			"content-type": "application/json;charset=UTF-8",
 		},
 	});
   },
