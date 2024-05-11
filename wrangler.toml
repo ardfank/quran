@@ -3,6 +3,10 @@ main = "src/worker.js"
 compatibility_date = "2024-05-11"
 workers_dev = true
 
+[[routes]]
+pattern = "quran.networkreverse.com/*"
+zone_name = "networkreverse.com"
+
 [placement]
 mode = "smart"
 

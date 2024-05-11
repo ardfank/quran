@@ -68,7 +68,7 @@ Allow: /';
 	let mdes="";
 	let mimg="https://cdn.networkreverse.com/OIG4.jpg";
 	let ttl="";
-	if(surah!=null && ayah===null && q===null){
+	if(surah!=null && Number.isInteger(parseInt(surah)) && ayah===null && q===null){
 		surah=((surah-1)<0)?1:surah;
 		await f.surah(QURL,(surah-1),(g)=>{
 			mkey=g[0].description.replace(/ /g,",");

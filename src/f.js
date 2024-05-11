@@ -2,7 +2,7 @@ async function main(qurl,b){
 	let data= await fetch(qurl).then(g=>{return g.json()});
 	let sr=[];
 	data.forEach(s=>{
-		sr.push({name:s.name,translation:s.translation,desc:s.description,audio:s.audio});
+		sr.push({number:s.number,name:s.name,translation:s.translation,desc:s.description,audio:s.audio});
 	})
 	b(sr);
 }
@@ -10,10 +10,6 @@ async function surah(qurl,a,b){
 	let data= await fetch(qurl).then(g=>{return g.json()});
 	let sr=[];
 	sr.push(data[a]);
-	// console.log(data);
-	// data.forEach(s=>{
-	// 	sr.push({name:s.name,translation:s.translation,audio:s.audio});
-	// })
 	b(sr);
 }
 function ayah(a,b){

@@ -1,9 +1,17 @@
 <script type='text/javascript'>
 $(document).ready(function(){
-	$("header").append("<audio preload='none' controls src='"+im.audio+"'></audio>");
-	$('#gal').append("<h1>"+im.name+" ("+im.translation+")</h1><h2>"+im.description+"</h2><div class='responsive'><span class='arab'>"+im.bismillah.arab+"</span><br/><span class='trj'>"+im.bismillah.translation+"</span><br/><audio preload='none' controls src='"+im.bismillah.audio.alafasy+"'></audio></div>");
-	im.ayahs.forEach((b)=>{
-		$('#gal').append("<div class='responsive'><span class='arab'>"+b.arab+"</span><br/><span class='trj'>"+b.translation+"</span><br/><audio preload='none' controls src='"+b.audio.alafasy+"'></audio></div>");
-	})
+	const url = new URL(location.href);
+	let sur=url.searchParams.get('surah');
+	if(sur !== null && Number.isInteger(parseInt(sur))){
+		$("header").append("<audio preload='metadata' controls src='"+im.audio+"'></audio>");
+		$('#gal').append("<h1>"+im.name+" ("+im.translation+")</h1><h2>"+im.description+"</h2><div class='responsive'><span class='arab'>"+im.bismillah.arab+"</span><br/><span class='trj'>"+im.bismillah.translation+"</span><br/><audio preload='metadata' controls src='"+im.bismillah.audio.alafasy+"'></audio></div>");
+		im.ayahs.forEach((b)=>{
+			$('#gal').append("<div class='responsive'><span class='arab'>"+b.arab+"</span><br/><span class='trj'>"+b.translation+"</span><br/><audio preload='metadata' controls src='"+b.audio.alafasy+"'></audio></div>");
+		})
+	}else{
+		im.forEach((b)=>{
+			$('#gal').append("<div class='responsive' onclick='location.href=\"/?surah="+b.number+"\"'><span class='arab'>"+b.name+" ("+b.translation+")</span><br/><span class='trj'>"+b.desc+"</span><br/><audio preload='metadata' controls src='"+b.audio+"'></audio></div>");
+		})
+	}
 });
 </script>
