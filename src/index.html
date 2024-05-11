@@ -1,1 +1,69 @@
- 
+<style>
+body{background-color:#000;background-attachment:fixed;height:900px;color:#f80;font: small calibri;background-image:radial-gradient(at 0 35%, #000 72%, #f80 74%,#fff 75%,#000 79%);}
+a{text-decoration:none;color:#f80}
+h4{border-top:1px dashed}
+#cont{
+    width:50vw;
+    min-height:100vh;
+    border:1px solid #f80;
+    margin:0 auto;
+}
+h1{margin:0 auto}
+h2{font-size:small}
+audio{width: 99%;height: 30px;margin:5px auto}
+audio::-webkit-media-controls-enclosure{
+	background-color: rgba(255,120,0,.5);
+	height: 30px;
+	border-radius: 5px;
+}
+
+
+header{position:sticky;top:0;z-index:99;text-align:center;width: 100%}
+#gal{display:flex;flex-flow: wrap;margin:5px}
+.responsive {width:100%;margin:5px;position:relative;border: 1px dashed #f80;text-align:right;padding:15px;background:#000}
+.arab{font-size:40px}
+.trj{font-size:medium}
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#light{
+	width:100%
+}
+@media only screen and (max-width: 990px) {
+ #cont {
+	width: 90vw;
+  }
+}
+@media only screen and (max-width: 700px) {
+  #cont {
+	width: 90vw;
+  }
+}
+::-webkit-scrollbar{width:5px;height:5px;}::-webkit-scrollbar-track{background:gainsboro;border-radius:5px;}::-webkit-scrollbar-thumb{background:rgba(255,0,0,.5);border-radius:5px;}::-webkit-scrollbar-thumb:hover{background:#830;}
+</style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-713L1EE5Z3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-713L1EE5Z3');
+</script>
+
+</head>
+<body>
+<div id='cont'>
+<header><a title='Beranda' alt='Beranda' href='/' style='margin-left:25px'>🏡 </a><a title='Play all' alt='Play all' href='#' onclick='javascript:event.preventDefault();ss();'>▶️ </a><input id='q' type='text' style='width:80%;margin:10px auto' placeholder='Pencarian...'></input></header>
+<div id='light'>
+<div id='gal'></div>
+</div>
+<div style="display:none;opacity:0.8;z-index:98;width:100%;height:99vh;position:fixed;top:0;left:0;padding-top:10px;text-align:center;background-image:radial-gradient(at 0 35%, #000 72%, #f80 74%,#fff 75%,#000 79%);" id='res'><img src='https://cdn.networkreverse.com/tt/loading.gif' style='margin-top:20vh;z-index:9' class='but'/></div>
+</div>
+<div class='clearfix'></div>
+<footer style='text-align:center;position:relative;top:10px'><img src='https://cdn.networkreverse.com/tt/loading.gif' width="128" height="128" alt="Loading"/></footer>
+
+

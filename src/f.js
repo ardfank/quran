@@ -1,10 +1,3 @@
-async function qu(qurl,b){
-	await fetch(qurl).then(g=>{
-		return g.json();
-	}).then(h=>{
-		b(h);
-	})
-}
 async function main(qurl,b){
 	let data= await fetch(qurl).then(g=>{return g.json()});
 	let sr=[];

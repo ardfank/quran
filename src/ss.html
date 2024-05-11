@@ -1,0 +1,9 @@
+<script type='text/javascript'>
+$(document).ready(function(){
+	$("header").append("<audio preload='none' controls src='"+im.audio+"'></audio>");
+	$('#gal').append("<h1>"+im.name+" ("+im.translation+")</h1><h2>"+im.description+"</h2><div class='responsive'><span class='arab'>"+im.bismillah.arab+"</span><br/><span class='trj'>"+im.bismillah.translation+"</span><br/><audio preload='none' controls src='"+im.bismillah.audio.alafasy+"'></audio></div>");
+	im.ayahs.forEach((b)=>{
+		$('#gal').append("<div class='responsive'><span class='arab'>"+b.arab+"</span><br/><span class='trj'>"+b.translation+"</span><br/><audio preload='none' controls src='"+b.audio.alafasy+"'></audio></div>");
+	})
+});
+</script>

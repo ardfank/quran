@@ -7,7 +7,7 @@ workers_dev = true
 mode = "smart"
 
 [vars]
-QURL='https://github.com/ardfank/quran/raw/master/quran.json'
+QURL='https://quran-81e.pages.dev/quran.json'
 
 [env.local.vars]
 QURL='https://squid.sa.ya/quran.json'
