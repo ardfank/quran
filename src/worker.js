@@ -60,6 +60,21 @@ Allow: /';
 			},
 		});
 	}
+	if (url.pathname === "/tafsir") {
+		let s=url.searchParams.get('s')-1;
+		let a=url.searchParams.get('a')-1;
+		let t=url.searchParams.get('t');
+		let taf="";
+		console.log(url.searchParams);
+		await f.tafsir(QURL,s,a,t,(g)=>{
+			taf=g;
+		})
+		return new Response(JSON.stringify(taf), {
+			headers: {
+				"content-type": "text/plain; charset=UTF-8",
+			},
+		});
+	}
 	let surah=url.searchParams.get('surah');
 	let ayah=url.searchParams.get('ayah');
 	let q=url.searchParams.get('q');
@@ -82,18 +97,16 @@ Allow: /';
 			h21="<h1>"+g[0].name+" ("+g[0].translation+")</h1><h2>"+g[0].description+"</h2>";
 			header="<audio preload='none' controls src='"+g[0].audio+"'></audio>";
 			if(surah!=1){
-				console.log(surah);
 				bsm="<div class='responsive' id='1' style='text-align: center;'><span class='arab'>"+g[0].bismillah.arab+"</span><br/><span class='trj'>"+g[0].bismillah.translation+"</span><br/><audio preload='none' controls src='"+g[0].bismillah.audio.alafasy+"'></audio></div>";
 			}
 			g[0].ayahs.forEach((b)=>{
-				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><br/><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><br/><audio preload='none' controls src='"+b.audio.alafasy+"'></audio></div>";
+				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><br/><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><br/><audio preload='none' controls src='"+b.audio.alafasy+"'></audio><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"kemenag\")' value='Tafsir Al-Tahlili (Kemenag)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"quraish\")' value='Tafsir Al-Muntakhab (M. Quraish Shihab)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"jalalayn\")' value='Tafsir Al-Jalalain'/><div class='tafsir' id='t"+b.number.inSurah+"'></div></div>";
 			});
 			// hin=JSON.stringify(g[0]);
 		});
 	}else{
 		await f.main(QURL,(g)=>{
 			bsm="<div class='responsive' id='1' style='text-align: center;'><span class='arab'>"+g.bismillah.arab+"</span><br/><span class='trj'>"+g.bismillah.translation+"</span><br/><audio preload='none' controls src='"+g.bismillah.audio.alafasy+"'></audio></div>";
-			console.log(g);
 			g.forEach((b)=>{
 				ay+="<div class='responsive' id='"+b.number+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><br/><h4 class='trj'>"+b.desc+"</h4><br/><audio preload='none' controls src='"+b.audio+"'></audio></div>";
 			})
@@ -110,7 +123,6 @@ Allow: /';
 		<div class='clearfix'></div>\
 		<footer style='text-align:center;position:relative;top:10px'>Thanks to <a href='https://github.com/renomureza/quran-api-id'>renomureza</a> untuk API nya.</footer>";
 	let nih="<!DOCTYPE HTML>\
-		<html>\
 		<html lang='id'>\
 		<head>\
 		<meta name='viewport' content='width=device-width, initial-scale=1'>\
@@ -142,7 +154,7 @@ Allow: /';
 		<meta name='theme-color' content='#B12A34'/>\
 		<title>"+ttl+"</title>\
 		<link rel='icon' type='image/x-icon' href='https://www.networkreverse.com/favicon.ico'>";
-	let hix=nih+index+bod+"</body></html>";
+	let hix=nih+index+bod+ss+"</body></html>";
 	return new Response(hix, {
 		headers: {
 			"content-type": "text/html;charset=UTF-8",

@@ -1,15 +1,14 @@
 <script type='text/javascript'>
-$(document).ready(function(){
-	const url = new URL(location.href);
-	let sur=url.searchParams.get('surah');
-	if(sur !== null && sur < 115 && Number.isInteger(parseInt(sur))){
-		// im.ayahs.forEach((b)=>{
-		// 	$('#gal').append("<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><br/><h4 class='trj'>"+b.translation+"</h4><br/><audio preload='none' controls src='"+b.audio.alafasy+"'></audio></div>");
-		// })
-	}else{
-		im.forEach((b)=>{
-			$('#gal').append("<div class='responsive' onclick='location.href=\"/?surah="+b.number+"\"'><span class='arab'>"+b.name+" ("+b.translation+")</span><br/><span class='trj'>"+b.desc+"</span><br/><audio preload='none' controls src='"+b.audio+"'></audio></div>");
-		})
-	}
-});
+function ttp(a){
+	document.getElementById('t'+a).innerHTML="";
+}
+async function tafs(s,a,t){
+	await fetch('/tafsir?s='+s+'&a='+a+'&t='+t).then((g)=>{
+		return g.text();
+	}).then((h)=>{
+		h=h.replace(/\\n/g,"<br/>").replace(/\\"/g,"\"");
+		h="<input type='button' value='Tutup' onclick='ttp("+a+")'/><br/>"+h;
+		document.getElementById('t'+a).innerHTML=h;
+	});
+}
 </script>

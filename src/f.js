@@ -13,12 +13,15 @@ async function surah(qurl,a,b){
 	sr.push(data[a]);
 	b(sr);
 }
-function ayah(a,b){
-	console.log(a);
+async function tafsir(qurl,s,a,t,b){
+	let data= await fetch(qurl).then(g=>{return g.json()});
+	let tf=(t==='kemenag')?data[s].ayahs[a].tafsir.kemenag.long:((t==='quraish')?data[s].ayahs[a].tafsir.quraish:data[s].ayahs[a].tafsir.jalalayn);
+	// console.log(s,a,t);
+	b(tf);
 }
 function q(a,b){
 	console.log(a);
 }
 module.exports = {
-  main,surah,ayah,q
+  main,surah,tafsir,q
 };
