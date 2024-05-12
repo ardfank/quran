@@ -68,12 +68,15 @@ Allow: /';
 	let mdes="";
 	let mimg="https://cdn.networkreverse.com/OIG4.jpg";
 	let ttl="";
-	if(surah!=null && Number.isInteger(parseInt(surah)) && ayah===null && q===null){
+	let h21="";
+	if(surah!=null && surah < 115 && Number.isInteger(parseInt(surah)) && ayah===null && q===null){
 		surah=((surah-1)<0)?1:surah;
 		await f.surah(QURL,(surah-1),(g)=>{
 			mkey=g[0].description.replace(/ /g,",");
-			mdes=g[0].description;
-			ttl="Surah "+g[0].number+": "+g[0].name+" ("+g[0].translation+") - "+g[0].description.substring(0,40)+"... - Network Reverse";
+			mdes=g[0].description.substring(0,150);
+			// ttl="Surah "+g[0].number+" "+g[0].name+" ("+g[0].translation+") - "+g[0].description.substring(0,30)+" - Network Reverse";
+			ttl="Surah "+g[0].number+" "+g[0].name+" ("+g[0].translation+") - Network Reverse";
+			h21="<h1>"+g[0].name+" ("+g[0].translation+")</h1><h2>"+g[0].description+"</h2>";
 			hin=JSON.stringify(g[0]);
 		});
 	}else{
@@ -112,7 +115,7 @@ Allow: /';
 		<meta name='theme-color' content='#B12A34'/>\
 		<title>"+ttl+"</title>\
 		<link rel='icon' type='image/x-icon' href='https://www.networkreverse.com/favicon.ico'>";
-	let hix=nih+index+"<script>im="+hin+"</script><script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script>"+ss+"</body></html>";
+	let hix=nih+index+h21+"<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script>im="+hin+"</script>"+ss+"</body></html>";
 	return new Response(hix, {
 		headers: {
 			"content-type": "text/html;charset=UTF-8",
