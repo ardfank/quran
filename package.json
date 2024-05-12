@@ -5,7 +5,7 @@
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
-    "start": "wrangler dev --env=local"
+    "start": "sudo php -S localhost:80 & wrangler dev --env=local"
   },
   "devDependencies": {
     "wrangler": "^3.0.0"

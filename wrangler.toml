@@ -14,4 +14,4 @@ mode = "smart"
 QURL='https://quran-81e.pages.dev/quran.json'
 
 [env.local.vars]
-QURL='https://squid.sa.ya/quran.json'
+QURL='http://localhost/quran.json'

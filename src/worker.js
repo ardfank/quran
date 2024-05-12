@@ -83,19 +83,19 @@ Allow: /';
 			header="<audio preload='none' controls src='"+g[0].audio+"'></audio>";
 			if(surah!=1){
 				console.log(surah);
-				bsm="<div class='responsive'style='text-align: center;'><span class='arab'>"+g[0].bismillah.arab+"</span><br/><span class='trj'>"+g[0].bismillah.translation+"</span><br/><audio preload='none' controls src='"+g[0].bismillah.audio.alafasy+"'></audio></div>";
+				bsm="<div class='responsive' id='1' style='text-align: center;'><span class='arab'>"+g[0].bismillah.arab+"</span><br/><span class='trj'>"+g[0].bismillah.translation+"</span><br/><audio preload='none' controls src='"+g[0].bismillah.audio.alafasy+"'></audio></div>";
 			}
 			g[0].ayahs.forEach((b)=>{
-				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><br/><h4 class='trj'>"+b.translation+"</h4><br/><audio preload='none' controls src='"+b.audio.alafasy+"'></audio></div>";
+				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><br/><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><br/><audio preload='none' controls src='"+b.audio.alafasy+"'></audio></div>";
 			});
 			// hin=JSON.stringify(g[0]);
 		});
 	}else{
 		await f.main(QURL,(g)=>{
-			bsm="<div class='responsive' style='text-align: center;'><span class='arab'>"+g.bismillah.arab+"</span><br/><span class='trj'>"+g.bismillah.translation+"</span><br/><audio preload='none' controls src='"+g.bismillah.audio.alafasy+"'></audio></div>";
+			bsm="<div class='responsive' id='1' style='text-align: center;'><span class='arab'>"+g.bismillah.arab+"</span><br/><span class='trj'>"+g.bismillah.translation+"</span><br/><audio preload='none' controls src='"+g.bismillah.audio.alafasy+"'></audio></div>";
 			console.log(g);
 			g.forEach((b)=>{
-				ay+="<div class='responsive' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><br/><h4 class='trj'>"+b.desc+"</h4><br/><audio preload='none' controls src='"+b.audio+"'></audio></div>";
+				ay+="<div class='responsive' id='"+b.number+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><br/><h4 class='trj'>"+b.desc+"</h4><br/><audio preload='none' controls src='"+b.audio+"'></audio></div>";
 			})
 			// hin=JSON.stringify(g);
 		});
@@ -111,6 +111,7 @@ Allow: /';
 		<footer style='text-align:center;position:relative;top:10px'>Thanks to <a href='https://github.com/renomureza/quran-api-id'>renomureza</a> untuk API nya.</footer>";
 	let nih="<!DOCTYPE HTML>\
 		<html>\
+		<html lang='id'>\
 		<head>\
 		<meta name='viewport' content='width=device-width, initial-scale=1'>\
 		<meta content='text/html;charset=utf-8' http-equiv='Content-Type'>\
@@ -121,6 +122,7 @@ Allow: /';
 		<link href=\""+request.url+"\" rel='canonical' />\
 		<meta content=\""+mdes+"\" name='description' />\
 		<meta content=\""+request.url+"\" property='og:url' />\
+		<meta content=\""+request.url+"\" name='twitter:url' />\
 		<meta content=\""+ttl+"\" property='og:title' />\
 		<meta content=\""+mdes+"\" property='og:description' />\
 		<meta content='en_US' property='og:locale' />\
