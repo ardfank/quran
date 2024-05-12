@@ -16,7 +16,6 @@ async function surah(qurl,a,b){
 async function tafsir(qurl,s,a,t,b){
 	let data= await fetch(qurl).then(g=>{return g.json()});
 	let tf=(t==='kemenag')?data[s].ayahs[a].tafsir.kemenag.long:((t==='quraish')?data[s].ayahs[a].tafsir.quraish:data[s].ayahs[a].tafsir.jalalayn);
-	// console.log(s,a,t);
 	b(tf);
 }
 function q(a,b){

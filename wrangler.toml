@@ -7,7 +7,7 @@ workers_dev = true
 mode = "smart"
 
 [vars]
-QURL='https://quran-81e.pages.dev/quran.json'
+QURL='https://cdn.networkreverse.com/quran.json'
 
 [env.local.vars]
 QURL='http://localhost/quran.json'

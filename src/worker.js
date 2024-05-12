@@ -1,12 +1,3 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run "npm run dev" in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run "npm run deploy" to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
 import index from "./index.html";
 import ss from "./ss.html";
 export default {
@@ -78,7 +69,6 @@ Allow: /';
 	let surah=url.searchParams.get('surah');
 	let ayah=url.searchParams.get('ayah');
 	let q=url.searchParams.get('q');
-	let hin="";
 	let mkey="";
 	let mdes="";
 	let mimg="https://cdn.networkreverse.com/OIG4.jpg";
@@ -92,7 +82,6 @@ Allow: /';
 		await f.surah(QURL,(surah-1),(g)=>{
 			mkey=g[0].description.replace(/ /g,",");
 			mdes=g[0].description.substring(0,150);
-			// ttl="Surah "+g[0].number+" "+g[0].name+" ("+g[0].translation+") - "+g[0].description.substring(0,30)+" - Network Reverse";
 			ttl="Surah "+g[0].number+" "+g[0].name+" ("+g[0].translation+") - Network Reverse";
 			h21="<h1>"+g[0].name+" ("+g[0].translation+")</h1><h2>"+g[0].description+"</h2>";
 			header="<audio preload='none' controls src='"+g[0].audio+"'></audio>";
@@ -102,7 +91,6 @@ Allow: /';
 			g[0].ayahs.forEach((b)=>{
 				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><br/><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><br/><audio preload='none' controls src='"+b.audio.alafasy+"'></audio><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"kemenag\")' value='Tafsir Al-Tahlili (Kemenag)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"quraish\")' value='Tafsir Al-Muntakhab (M. Quraish Shihab)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"jalalayn\")' value='Tafsir Al-Jalalain'/><div class='tafsir' id='t"+b.number.inSurah+"'></div></div>";
 			});
-			// hin=JSON.stringify(g[0]);
 		});
 	}else{
 		await f.main(QURL,(g)=>{
@@ -110,7 +98,6 @@ Allow: /';
 			g.forEach((b)=>{
 				ay+="<div class='responsive' id='"+b.number+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><br/><h4 class='trj'>"+b.desc+"</h4><br/><audio preload='none' controls src='"+b.audio+"'></audio></div>";
 			})
-			// hin=JSON.stringify(g);
 		});
 	}
 	let bod="<body>\
@@ -120,8 +107,7 @@ Allow: /';
 		<div id='gal'>"+h21+bsm+ay+"</div>\
 		</div>\
 		</div>\
-		<div class='clearfix'></div>\
-		<footer style='text-align:center;position:relative;top:10px'>Thanks to <a href='https://github.com/renomureza/quran-api-id'>renomureza</a> untuk API nya.</footer>";
+		<footer style='text-align:center;position:relative;top:10px'>Source: quran.json Thanks to <a href='https://github.com/renomureza/quran-api-id'>renomureza</a><br/>Application source on <a href='https://github.com/ardfank/quran'>Gitbub</a> develop using <a href='https://workers.cloudflare.com/playground'>Cloudflare Worker and Pages</a><br/>Masukan, saran, kritik, koreksi, dll silahkan email ke <a href='mailto:cs@software-mirrors.com'>cs@software-mirrors.com</a><br/>Terima Kasih</footer>";
 	let nih="<!DOCTYPE HTML>\
 		<html lang='id'>\
 		<head>\
