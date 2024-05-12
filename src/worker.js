@@ -86,17 +86,17 @@ Allow: /';
 			h21="<h1>"+g[0].name+" ("+g[0].translation+")</h1><h2>"+g[0].description+"</h2>";
 			header="<audio preload='none' controls src='"+g[0].audio+"'></audio>";
 			if(surah!=1){
-				bsm="<div class='responsive' id='1' style='text-align: center;'><span class='arab'>"+g[0].bismillah.arab+"</span><br/><span class='trj'>"+g[0].bismillah.translation+"</span><br/><audio preload='none' controls src='"+g[0].bismillah.audio.alafasy+"'></audio></div>";
+				bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g[0].bismillah.arab+"</h3><h4 class='trj'>"+g[0].bismillah.translation+"</h4><audio preload='none' controls src='"+g[0].bismillah.audio.alafasy+"'></audio></div>";
 			}
 			g[0].ayahs.forEach((b)=>{
-				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><br/><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><br/><audio preload='none' controls src='"+b.audio.alafasy+"'></audio><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"kemenag\")' value='Tafsir Al-Tahlili (Kemenag)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"quraish\")' value='Tafsir Al-Muntakhab (M. Quraish Shihab)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"jalalayn\")' value='Tafsir Al-Jalalain'/><div class='tafsir' id='t"+b.number.inSurah+"'></div></div>";
+				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><audio preload='none' controls src='"+b.audio.alafasy+"'></audio><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"kemenag\")' value='Tafsir Al-Tahlili (Kemenag)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"quraish\")' value='Tafsir Al-Muntakhab (M. Quraish Shihab)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"jalalayn\")' value='Tafsir Al-Jalalain'/><div class='tafsir' id='t"+b.number.inSurah+"'></div></div>";
 			});
 		});
 	}else{
 		await f.main(QURL,(g)=>{
-			bsm="<div class='responsive' id='1' style='text-align: center;'><span class='arab'>"+g.bismillah.arab+"</span><br/><span class='trj'>"+g.bismillah.translation+"</span><br/><audio preload='none' controls src='"+g.bismillah.audio.alafasy+"'></audio></div>";
+			bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g.bismillah.arab+"</h3><h4 class='trj'>"+g.bismillah.translation+"</h4><audio preload='none' controls src='"+g.bismillah.audio.alafasy+"'></audio></div>";
 			g.forEach((b)=>{
-				ay+="<div class='responsive' id='"+b.number+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><br/><h4 class='trj'>"+b.desc+"</h4><br/><audio preload='none' controls src='"+b.audio+"'></audio></div>";
+				ay+="<div class='responsive' id='"+b.number+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><h4 class='trj'>"+b.desc+"</h4><audio preload='none' controls src='"+b.audio+"'></audio></div>";
 			})
 		});
 	}
