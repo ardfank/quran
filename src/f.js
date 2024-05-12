@@ -1,6 +1,7 @@
 async function main(qurl,b){
 	let data= await fetch(qurl).then(g=>{return g.json()});
 	let sr=[];
+	sr.bismillah=data[0].bismillah;
 	data.forEach(s=>{
 		sr.push({number:s.number,name:s.name,translation:s.translation,desc:s.description,audio:s.audio});
 	})

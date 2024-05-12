@@ -69,6 +69,9 @@ Allow: /';
 	let mimg="https://cdn.networkreverse.com/OIG4.jpg";
 	let ttl="";
 	let h21="";
+	let header="";
+	let bsm="";
+	let ay="";
 	if(surah!=null && surah < 115 && Number.isInteger(parseInt(surah)) && ayah===null && q===null){
 		surah=((surah-1)<0)?1:surah;
 		await f.surah(QURL,(surah-1),(g)=>{
@@ -77,13 +80,35 @@ Allow: /';
 			// ttl="Surah "+g[0].number+" "+g[0].name+" ("+g[0].translation+") - "+g[0].description.substring(0,30)+" - Network Reverse";
 			ttl="Surah "+g[0].number+" "+g[0].name+" ("+g[0].translation+") - Network Reverse";
 			h21="<h1>"+g[0].name+" ("+g[0].translation+")</h1><h2>"+g[0].description+"</h2>";
-			hin=JSON.stringify(g[0]);
+			header="<audio preload='none' controls src='"+g[0].audio+"'></audio>";
+			if(surah!=1){
+				console.log(surah);
+				bsm="<div class='responsive'style='text-align: center;'><span class='arab'>"+g[0].bismillah.arab+"</span><br/><span class='trj'>"+g[0].bismillah.translation+"</span><br/><audio preload='none' controls src='"+g[0].bismillah.audio.alafasy+"'></audio></div>";
+			}
+			g[0].ayahs.forEach((b)=>{
+				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><br/><h4 class='trj'>"+b.translation+"</h4><br/><audio preload='none' controls src='"+b.audio.alafasy+"'></audio></div>";
+			});
+			// hin=JSON.stringify(g[0]);
 		});
 	}else{
 		await f.main(QURL,(g)=>{
-			hin=JSON.stringify(g);
+			bsm="<div class='responsive' style='text-align: center;'><span class='arab'>"+g.bismillah.arab+"</span><br/><span class='trj'>"+g.bismillah.translation+"</span><br/><audio preload='none' controls src='"+g.bismillah.audio.alafasy+"'></audio></div>";
+			console.log(g);
+			g.forEach((b)=>{
+				ay+="<div class='responsive' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><br/><h4 class='trj'>"+b.desc+"</h4><br/><audio preload='none' controls src='"+b.audio+"'></audio></div>";
+			})
+			// hin=JSON.stringify(g);
 		});
 	}
+	let bod="<body>\
+		<div id='cont'>\
+		<header><a title='Beranda' alt='Beranda' href='/' style='margin-left:25px'>🏡 </a><input id='q' type='text' style='width:80%;margin:10px auto' placeholder='Pencarian...'></input>"+header+"</header>\
+		<div id='light'>\
+		<div id='gal'>"+h21+bsm+ay+"</div>\
+		</div>\
+		</div>\
+		<div class='clearfix'></div>\
+		<footer style='text-align:center;position:relative;top:10px'>Thanks to <a href='https://github.com/renomureza/quran-api-id'>renomureza</a> untuk API nya.</footer>";
 	let nih="<!DOCTYPE HTML>\
 		<html>\
 		<head>\
@@ -115,7 +140,7 @@ Allow: /';
 		<meta name='theme-color' content='#B12A34'/>\
 		<title>"+ttl+"</title>\
 		<link rel='icon' type='image/x-icon' href='https://www.networkreverse.com/favicon.ico'>";
-	let hix=nih+index+h21+"<script type='text/javascript' src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><script>im="+hin+"</script>"+ss+"</body></html>";
+	let hix=nih+index+bod+"</body></html>";
 	return new Response(hix, {
 		headers: {
 			"content-type": "text/html;charset=UTF-8",
