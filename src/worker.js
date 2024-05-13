@@ -1,10 +1,18 @@
 import index from "./index.html";
 import ss from "./ss.html";
+import sm from "./sitemap.txt";
 export default {
   async fetch(request, env, ctx) {
 	const QURL=`${env.QURL}`;
 	const f = require('./f.js');
 	const url = new URL(request.url);
+	if (url.pathname === "/sitemap.xml") {
+		return new Response(sm, {
+			headers: {
+				"content-type": "application/atom+xml; charset=UTF-8",
+			},
+		});
+	}
 	if (url.pathname === "/ff.webmanifest") {
 		let man='{\n\
 			"name": "Quran - Network Reverse",\n\
