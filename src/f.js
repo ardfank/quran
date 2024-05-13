@@ -29,7 +29,7 @@ function mA(a,c,b){
 	if(am===true){
 		let ge=c.toLowerCase().indexOf(a.toLowerCase());
 		ge=((ge-70)<0)?0:ge-70;
-		let sg=c.substr((ge),140);
+		let sg=c.substr((ge),200);
 		sg=sg.split(' ');
 		for(var i=1;i<(sg.length-1);i++){
 			rg+=sg[i]+' ';
