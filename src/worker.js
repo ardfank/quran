@@ -52,7 +52,9 @@ Disallow: \n\
 \n\
 User-agent: *\n\
 Disallow: /search\n\
-Allow: /';
+Allow: /\n\
+\n\
+Sitemap: https://quran.networkreverse.com/sitemap.xml';
 		return new Response(man, {
 			headers: {
 				"content-type": "text/plain; charset=UTF-8",
