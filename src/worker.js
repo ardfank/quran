@@ -98,7 +98,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 			mkey=g[0].description.replace(/ /g,",");
 			mdes=g[0].description.substring(0,150);
 			ttl="Surah "+g[0].number+" "+g[0].name+" ("+g[0].translation+") - Network Reverse";
-			h21="<h1>"+g[0].name+" ("+g[0].translation+")</h1><h2>"+g[0].description+"</h2>";
+			h21="<h1><a href='"+url.href+"' rel='bookmark' title='"+g[0].name+" ("+g[0].translation+"'>"+g[0].name+" ("+g[0].translation+")</a></h1><h2>"+g[0].description+"</h2>";
 			header="<audio preload='none' controls src='"+g[0].audio+"'></audio>";
 			if(surah!=1){
 				bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g[0].bismillah.arab+"</h3><h4 class='trj'>"+g[0].bismillah.translation+"</h4><audio preload='none' controls src='"+g[0].bismillah.audio.alafasy+"'></audio></div>";
@@ -113,7 +113,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 			mdes="Al-Quran Terjemahan dan Tafsir dari Tafsir Kemenag Tafsir Al-Tahlili, Tafsir Al-Muntakhab (M. Quraish Shihab), Tafsir Al-Jalalain. Audio dengan terjemahan bahasa Indonesia - Network Reverse";
 			mkey=mdes.replace(/ /g,",");
 			ttl="Al-Quran - Audio, Terjemahan dan Tafsir - Network Reverse";
-			h21="<h1>"+ttl+"</h1><h2>"+mdes+"</h2>";
+			h21="<h1><a href='"+url.href+"' rel='bookmark' title='"+ttl+"'>"+ttl+"</a></h1><h2>"+mdes+"</h2>";
 			bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g.bismillah.arab+"</h3><h4 class='trj'>"+g.bismillah.translation+"</h4><audio preload='none' controls src='"+g.bismillah.audio.alafasy+"'></audio></div>";
 			g.forEach((b)=>{
 				ay+="<div class='responsive' id='"+b.number+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><h4 class='trj'>"+b.desc+"</h4><audio preload='none' controls src='"+b.audio+"'></audio></div>";
