@@ -77,9 +77,14 @@ Allow: /';
 	let header="";
 	let bsm="";
 	let ay="";
+	let nav=[];
+	if(surah!=null && surah<1||surah>114){return Response.redirect(url.origin, 301);}
 	if(surah!=null && surah < 115 && Number.isInteger(parseInt(surah)) && ayah===null && q===null){
 		surah=((surah-1)<0)?1:surah;
 		await f.surah(QURL,(surah-1),(g)=>{
+			let prev=(g[0].prev==='')?`<input style='float:left' type='button' onclick='location.href="/?surah=114"' value='⏪ Al-Nas'/>`:`<input style='float:left' type='button' onclick='location.href="/?surah=${(parseInt(surah)-1)}"' value="⏪ ${g[0].prev}"/>`;
+			let next=(g[0].next==='')?`<input style='float:right' type='button' onclick='location.href="/?surah=1"' value='Al-Fatihah ⏩'/>`:`<input style='float:right' type='button' onclick='location.href="/?surah=${(parseInt(surah)+1)}"' value="${g[0].next} ⏩"/>`;
+			nav.push(prev,next);
 			mkey=g[0].description.replace(/ /g,",");
 			mdes=g[0].description.substring(0,150);
 			ttl="Surah "+g[0].number+" "+g[0].name+" ("+g[0].translation+") - Network Reverse";
@@ -94,6 +99,7 @@ Allow: /';
 		});
 	}else{
 		await f.main(QURL,(g)=>{
+			nav.push(`<input style='float:left' type='button' onclick='location.href="/?surah=114"' value='⏪ Al-Nas'/>`,`<input style='float:right' type='button' onclick='location.href="/?surah=1"' value='Al-Fatihah ⏩'/>`);
 			mdes="Al-Quran Terjemahan dan Tafsir dari Tafsir Kemenag Tafsir Al-Tahlili, Tafsir Al-Muntakhab (M. Quraish Shihab), Tafsir Al-Jalalain. Audio dengan terjemahan bahasa Indonesia - Network Reverse";
 			mkey=mdes.replace(/ /g,",");
 			ttl="Al-Quran - Audio, Terjemahan dan Tafsir - Network Reverse";
@@ -104,9 +110,10 @@ Allow: /';
 			})
 		});
 	}
+
 	let bod="<body>\
 		<div id='cont'>\
-		<header><a title='Beranda' alt='Beranda' href='/' style='margin-left:25px'>🏡 </a><input id='q' type='text' style='width:80%;margin:10px auto' placeholder='Pencarian...'></input>"+header+"</header>\
+		<header>"+nav[0]+"<input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='q' type='text' style='width:50%;margin:10px auto' placeholder='Pencarian...'/>"+nav[1]+header+"</header>\
 		<div id='light'>\
 		<div id='gal'>"+h21+bsm+ay+"</div>\
 		</div>\
