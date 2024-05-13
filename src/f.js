@@ -44,28 +44,28 @@ async function search(qurl,a,b){
 	data.forEach((e)=>{
 		mA(a,e.description,(t,rg)=>{
 			if(t===true){
-				be.push({surah:e.number,name:e.name,ayahs:'',tafsir:'',snippet:rg});
+				be.push({surah:e.number,name:e.name,ayahs:'',tafsir:'',tafs:'',snippet:rg});
 			}
 		});
 		e.ayahs.forEach((y)=>{
 			mA(a,y.translation,(t,rg)=>{
 				if(t===true){
-					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafsir:'',snippet:rg});
+					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafs:'',tafsir:'',snippet:rg});
 				}
 			});
 			mA(a,y.tafsir.kemenag.long,(t,rg)=>{
 				if(t===true){
-					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafsir:'pada Tafsir Al-Tahlili',snippet:rg});
+					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafs:'kemenag',tafsir:'pada Tafsir Al-Tahlili',snippet:rg});
 				}
 			});
 			mA(a,y.tafsir.quraish,(t,rg)=>{
 				if(t===true){
-					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafsir:'pada Tafsir Al-Muntakhab',snippet:rg});
+					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafs:'quraish',tafsir:'pada Tafsir Al-Muntakhab',snippet:rg});
 				}
 			});
 			mA(a,y.tafsir.jalalayn,(t,rg)=>{
 				if(t===true){
-					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafsir:'pada Tafsir Al-Jalalain',snippet:rg});
+					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafs:'jalalayn',tafsir:'pada Tafsir Al-Jalalain',snippet:rg});
 				}
 			});
 		});

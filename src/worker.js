@@ -101,7 +101,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 		h21="<h1><a href='"+url.href+"' rel='bookmark' title='"+ttl+"'>"+ttl+"</a></h1>";
 		taf.forEach((b)=>{
 			let aya=(b.ayahs==='')?'pada deskripsi surah':'Ayat ke '+b.ayahs;
-			ay+="<div class='responsive' onclick='location.href=\"/?surah="+b.surah+"#"+b.ayahs+"\"'><h3 class='arab'>Surah "+b.surah+": "+b.name+" "+aya+" "+b.tafsir+"</h3><h4 class='trj'>"+b.snippet+"</h4></div>";
+			ay+="<div class='responsive' onclick='location.href=\"/?surah="+b.surah+"&ayat="+b.ayahs+"&tafsir="+b.tafs+"#"+b.ayahs+"\"'><h3 class='arab'>Surah "+b.surah+": "+b.name+" "+aya+" "+b.tafsir+"</h3><h4 class='trj'>"+b.snippet+"</h4></div>";
 		})
 	}else if(surah!=null && surah < 115 && Number.isInteger(parseInt(surah)) && ayah===null && q===null){
 		surah=((surah-1)<0)?1:surah;

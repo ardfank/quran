@@ -12,4 +12,11 @@ async function tafs(s,a,t){
 		document.getElementById('t'+a).innerHTML=h;
 	});
 }
+const url = new URL(location.href);
+let tfs=url.searchParams.get('tafsir');
+let aht=url.searchParams.get('ayat');
+let srh=url.searchParams.get('surah');
+if(tfs==='jalalayn'||tfs==='quraish'||tfs==='kemenag'){
+	tafs(srh,aht,tfs);
+}
 </script>
