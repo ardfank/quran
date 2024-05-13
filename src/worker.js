@@ -113,7 +113,7 @@ Allow: /';
 
 	let bod="<body>\
 		<div id='cont'>\
-		<header>"+nav[0]+"<input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='q' type='text' style='width:50%;margin:10px auto' placeholder='Pencarian...'/>"+nav[1]+header+"</header>\
+		<header><input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='q' type='text' placeholder='Pencarian...'/>"+nav[0]+nav[1]+header+"</header>\
 		<div id='light'>\
 		<div id='gal'>"+h21+bsm+ay+"</div>\
 		</div>\
