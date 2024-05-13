@@ -66,7 +66,6 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 		let a=url.searchParams.get('a')-1;
 		let t=url.searchParams.get('t');
 		let taf="";
-		console.log(url.searchParams);
 		await f.tafsir(QURL,s,a,t,(g)=>{
 			taf=g;
 		})
@@ -89,7 +88,21 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	let ay="";
 	let nav=[];
 	if(surah!=null && surah<1||surah>114){return Response.redirect(url.origin, 301);}
-	if(surah!=null && surah < 115 && Number.isInteger(parseInt(surah)) && ayah===null && q===null){
+	if (url.pathname === "/search") {
+		let taf="";
+		await f.search(QURL,q,(g)=>{
+			taf=g;
+		})
+		nav.push(`<input style='float:left' type='button' onclick='location.href="/?surah=114"' value='⏪ Al-Nas'/>`,`<input style='float:right' type='button' onclick='location.href="/?surah=1"' value='Al-Fatihah ⏩'/>`);
+		mdes=`${taf.length} Hasil pencarian: '${q}' pada surah, ayat dan tafsir`;
+		mkey=mdes.replace(/ /g,",");
+		ttl=mdes;
+		h21="<h1><a href='"+url.href+"' rel='bookmark' title='"+ttl+"'>"+ttl+"</a></h1>";
+		taf.forEach((b)=>{
+			let aya=(b.ayahs==='')?'pada deskripsi surah':'Ayat ke '+b.ayahs;
+			ay+="<div class='responsive' onclick='location.href=\"/?surah="+b.surah+"#"+b.ayahs+"\"'><h3 class='arab'>Surah "+b.surah+": "+b.name+" "+aya+" "+b.tafsir+"</h3><h4 class='trj'>"+b.snippet+"</h4></div>";
+		})
+	}else if(surah!=null && surah < 115 && Number.isInteger(parseInt(surah)) && ayah===null && q===null){
 		surah=((surah-1)<0)?1:surah;
 		await f.surah(QURL,(surah-1),(g)=>{
 			let prev=(g[0].prev==='')?`<input style='float:left' type='button' onclick='location.href="/?surah=114"' value='⏪ Al-Nas'/>`:`<input style='float:left' type='button' onclick='location.href="/?surah=${(parseInt(surah)-1)}"' value="⏪ ${g[0].prev}"/>`;
@@ -123,7 +136,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 
 	let bod="<body>\
 		<div id='cont'>\
-		<header><input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='q' type='text' placeholder='Pencarian...'/>"+nav[0]+nav[1]+header+"</header>\
+		<header><input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='q' type='text' placeholder='Pencarian...' onchange='location.href=\"/search?q=\"+this.value'/>"+nav[0]+nav[1]+header+"</header>\
 		<div id='light'>\
 		<div id='gal'>"+h21+bsm+ay+"</div>\
 		</div>\

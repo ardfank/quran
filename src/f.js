@@ -22,9 +22,56 @@ async function tafsir(qurl,s,a,t,b){
 	let tf=(t==='kemenag')?data[s].ayahs[a].tafsir.kemenag.long:((t==='quraish')?data[s].ayahs[a].tafsir.quraish:data[s].ayahs[a].tafsir.jalalayn);
 	b(tf);
 }
-function q(a,b){
-	console.log(a);
+function mA(a,c,b){
+	let eq = new RegExp("\\b" + a + "\\b", 'gi');
+	let rg="";
+	let am=eq.test(c);
+	if(am===true){
+		let ge=c.toLowerCase().indexOf(a.toLowerCase());
+		ge=((ge-70)<0)?0:ge-70;
+		let sg=c.substr((ge),140);
+		sg=sg.split(' ');
+		for(var i=1;i<(sg.length-1);i++){
+			rg+=sg[i]+' ';
+		}
+		rg=`...${rg}...`;
+	}
+	b(am,rg);
+}
+async function search(qurl,a,b){
+	let data= await fetch(qurl).then(g=>{return g.json()});
+	let be=[];
+	data.forEach((e)=>{
+		mA(a,e.description,(t,rg)=>{
+			if(t===true){
+				be.push({surah:e.number,name:e.name,ayahs:'',tafsir:'',snippet:rg});
+			}
+		});
+		e.ayahs.forEach((y)=>{
+			mA(a,y.translation,(t,rg)=>{
+				if(t===true){
+					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafsir:'',snippet:rg});
+				}
+			});
+			mA(a,y.tafsir.kemenag.long,(t,rg)=>{
+				if(t===true){
+					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafsir:'pada Tafsir Al-Tahlili',snippet:rg});
+				}
+			});
+			mA(a,y.tafsir.quraish,(t,rg)=>{
+				if(t===true){
+					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafsir:'pada Tafsir Al-Muntakhab',snippet:rg});
+				}
+			});
+			mA(a,y.tafsir.jalalayn,(t,rg)=>{
+				if(t===true){
+					be.push({surah:e.number,name:e.name,ayahs:y.number.inSurah,tafsir:'pada Tafsir Al-Jalalain',snippet:rg});
+				}
+			});
+		});
+	});
+	b(be);
 }
 module.exports = {
-  main,surah,tafsir,q
+  main,surah,tafsir,search
 };
