@@ -94,7 +94,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 			taf=g;
 		})
 		nav.push(`<input style='float:left' type='button' onclick='location.href="/?surah=114"' value='⏪ Al-Nas'/>`,`<input style='float:right' type='button' onclick='location.href="/?surah=1"' value='Al-Fatihah ⏩'/>`);
-		ttl=`${taf.length} Hasil pencarian: '${q}' pada surah, ayat dan tafsir`;
+		ttl=`${taf.length} hasil pencarian: '${q}' pada surah, ayat dan tafsir`;
 		let ft=(!taf[0])?'tidak ditemukan':taf[0].snippet.substr(3,111);
 		mdes=ttl+' - Network Reverse '+ft;
 		mkey=mdes.replace(/ /g,",");
