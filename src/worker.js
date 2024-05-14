@@ -36,9 +36,9 @@ export default {
 				}\n\
 			],\n\
 			"start_url": "/",\n\
-			"display": "minimal-ui",\n\
-			"theme_color": "#B12A34",\n\
-			"background_color": "#B12A34"\n\
+			"display": "standalone",\n\
+			"theme_color": "#ff8000",\n\
+			"background_color": "#ff8000"\n\
 			}';
 		return new Response(man, {
 			headers: {
