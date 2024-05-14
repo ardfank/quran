@@ -142,7 +142,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 		<div id='gal'>"+h21+bsm+ay+"</div>\
 		</div>\
 		</div>\
-		<footer>Source: quran.json Thanks to <a href='https://github.com/renomureza/quran-api-id'>renomureza</a><br/>Application source on <a href='https://github.com/ardfank/quran'>Gitbub</a> develop using <a href='https://workers.cloudflare.com/playground'>Cloudflare Worker and Pages</a><br/>Masukan, saran, kritik, koreksi, dll silahkan email ke <a href='mailto:cs@software-mirrors.com'>cs@software-mirrors.com</a></footer>";
+		<footer>Source: quran.json Thanks to <a href='https://github.com/renomureza/quran-api-id'>renomureza</a><br/>Application source on <a href='https://github.com/ardfank/quran'>Gitbub</a> develop using <a href='https://workers.cloudflare.com/playground'>Cloudflare Worker and Pages</a><br/>Masukan, saran, kritik, koreksi, dll silahkan kontak <a href='https://twitter.com/EntaahLaah' target='_blank'>@EntaahLaah</a></footer>";
 	let nih="<!DOCTYPE HTML>\
 		<html lang='id'>\
 		<head>\
