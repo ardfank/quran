@@ -20,18 +20,43 @@ export default {
 			"description": "Mari Mengerti Al-Quran, Terjemahan dan Tafsirnya",\n\
 			"icons": [\n\
 				{\n\
-				"src": "https://cdn.networkreverse.com/tt/pocut16.png",\n\
-				"sizes": "16x16",\n\
+				"src": "https://cdn.networkreverse.com/icons/icon-72x72.png",\n\
+				"sizes": "72x72",\n\
 				"type": "image/png"\n\
 				},\n\
 				{\n\
-				"src": "https://cdn.networkreverse.com/tt/pocut.png",\n\
+				"src": "https://cdn.networkreverse.com/icons/icon-96x96.png",\n\
+				"sizes": "96x96",\n\
+				"type": "image/png"\n\
+				},\n\
+				{\n\
+				"src": "https://cdn.networkreverse.com/icons/icon-128x128.png",\n\
 				"sizes": "128x128",\n\
 				"type": "image/png"\n\
 				},\n\
 				{\n\
-				"src": "https://cdn.networkreverse.com/tt/pocut256.png",\n\
-				"sizes": "256x256",\n\
+				"src": "https://cdn.networkreverse.com/icons/icon-144x144.png",\n\
+				"sizes": "144x144",\n\
+				"type": "image/png"\n\
+				},\n\
+				{\n\
+				"src": "https://cdn.networkreverse.com/icons/icon-152x152.png",\n\
+				"sizes": "152x152",\n\
+				"type": "image/png"\n\
+				},\n\
+				{\n\
+				"src": "https://cdn.networkreverse.com/icons/icon-192x192.png",\n\
+				"sizes": "192x192",\n\
+				"type": "image/png"\n\
+				},\n\
+				{\n\
+				"src": "https://cdn.networkreverse.com/icons/icon-384x384.png",\n\
+				"sizes": "384x384",\n\
+				"type": "image/png"\n\
+				},\n\
+				{\n\
+				"src": "https://cdn.networkreverse.com/icons/icon-512x512.png",\n\
+				"sizes": "512x512",\n\
 				"type": "image/png"\n\
 				}\n\
 			],\n\
