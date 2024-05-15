@@ -1,8 +1,10 @@
 # Logs
 #audio/
+*.ayt
 *.mp3
 logs
 _.log
+tafasir/
 npm-debug.log_
 yarn-debug.log*
 yarn-error.log*
