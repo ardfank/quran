@@ -100,10 +100,13 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 			},
 		});
 	}
+	function getCook(cookiename){
+		var cookiestring=RegExp(cookiename+"=[^;]+").exec(request.headers.get('cookie'));
+		return decodeURIComponent(!!cookiestring ? cookiestring.toString().replace(/^[^=]+./,"") : "");
+	}
 	let surah=url.searchParams.get('surah');
 	let ayah=url.searchParams.get('ayah');
 	let q=url.searchParams.get('q');
-	let qori=url.searchParams.get('qori');
 	let mkey="";
 	let mdes="";
 	let mimg="https://cdn.networkreverse.com/OIG4.jpg";
@@ -113,17 +116,21 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	let bsm="";
 	let ay="";
 	let nav=[];
-	if (qori) {
-		qori=(qori=='ahmedajamy' || qori=='alafasy' || qori=='husarymujawwad' || qori=='minshawi' || qori=='muhammadayyoub' || qori=='muhammadjibreel')?qori:'alafasy';
-		let cQ=`posisi=${qori}; qori=${qori}; Max-Age=${60 * 60 * 24 * 60}; secure; SameSite=Strict`;
-		return new Response(null, {
-			status: 301,
-			headers: {
-				'Location': url.referer || '/',
-				'Set-Cookie': cQ
-			}
-		});
-	}
+	let qori=getCook('qori');
+	qori=(qori=='ahmedajamy' || qori=='alafasy' || qori=='husarymujawwad' || qori=='minshawi' || qori=='muhammadayyoub' || qori=='muhammadjibreel')?qori:'alafasy';
+	// let qori=url.searchParams.get('qori');
+	// if (qori) {
+	// 	console.log(url);
+	// 	let cQ=`qori=${qori}; posisi=${qori}; Max-Age=${60 * 60 * 24 * 60}; secure; SameSite=Strict`;
+	// 	return new Response(null, {
+	// 		status: 302,
+	// 		headers: {
+	// 			'Location': url.referer || '/',
+	// 			'Set-Cookie': cQ
+	// 		}
+	// 	});
+	// }
+	console.log(qori);
 	if(surah!=null && surah<1||surah>114){return Response.redirect(url.origin, 301);}
 	if (url.pathname === "/search") {
 		let taf="";
@@ -152,10 +159,10 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 			h21="<h1><a href='"+url.href+"' rel='bookmark' title='"+g[0].name+" ("+g[0].translation+"'>"+g[0].name+" ("+g[0].translation+")</a></h1><h2>"+g[0].description+"</h2>";
 			header="<audio preload='none' controls src='"+g[0].audio+"'></audio>";
 			if(surah!=1){
-				bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g[0].bismillah.arab+"</h3><h4 class='trj'>"+g[0].bismillah.translation+"</h4><audio preload='none' controls src='"+g[0].bismillah.audio.alafasy+"'></audio></div>";
+				bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g[0].bismillah.arab+"</h3><h4 class='trj'>"+g[0].bismillah.translation+"</h4><audio preload='none' controls src='"+g[0].bismillah.audio[qori]+"'></audio></div>";
 			}
 			g[0].ayahs.forEach((b)=>{
-				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><audio preload='none' controls src='"+b.audio.alafasy+"'></audio><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"kemenag\")' value='Tafsir Al-Tahlili (Kemenag)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"quraish\")' value='Tafsir Al-Muntakhab (M. Quraish Shihab)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"jalalayn\")' value='Tafsir Al-Jalalain'/><div class='tafsir' id='t"+b.number.inSurah+"'></div></div>";
+				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><audio preload='none' controls src='"+b.audio[qori]+"'></audio><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"kemenag\")' value='Tafsir Al-Tahlili (Kemenag)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"quraish\")' value='Tafsir Al-Muntakhab (M. Quraish Shihab)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"jalalayn\")' value='Tafsir Al-Jalalain'/><div class='tafsir' id='t"+b.number.inSurah+"'></div></div>";
 			});
 		});
 	}else{
@@ -165,7 +172,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 			mkey=mdes.replace(/ /g,",");
 			ttl="Al-Quran - Audio, Terjemahan dan Tafsir - Network Reverse";
 			h21="<h1><a href='"+url.href+"' rel='bookmark' title='"+ttl+"'>Al-Quran - Audio, Terjemahan dan Tafsir</a></h1><h2>"+mdes+"</h2>";
-			bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g.bismillah.arab+"</h3><h4 class='trj'>"+g.bismillah.translation+"</h4><audio preload='none' controls src='"+g.bismillah.audio.alafasy+"'></audio></div>";
+			bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g.bismillah.arab+"</h3><h4 class='trj'>"+g.bismillah.translation+"</h4><audio preload='none' controls src='"+g.bismillah.audio[qori]+"'></audio></div>";
 			g.forEach((b)=>{
 				ay+="<div class='responsive' id='"+b.number+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><h4 class='trj'>"+b.desc+"</h4><audio preload='none' controls src='"+b.audio+"'></audio></div>";
 			})
@@ -174,7 +181,16 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 
 	let bod="<body>\
 		<div id='cont'>\
-		<header><input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='q' type='text' placeholder='Pencarian...' onchange='location.href=\"/search?q=\"+this.value'/>"+nav[0]+nav[1]+header+"</header>\
+		<header><input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='q' type='text' placeholder='Pencarian...' onchange='location.href=\"/search?q=\"+this.value'/>\
+		<input id='menu' type='button' onclick='toggleMenu()' value='🗣️'/>\
+		<ul id='menu-box' style='display:none'>\
+		<li onclick='qori(\"ahmedajamy\")'>Ahmad Al-Ajmi</a></li>\
+		<li onclick='qori(\"alafasy\")'>Mishari Rashid al-`Afasy</a></li>\
+		<li onclick='qori(\"husarymujawwad\")'>Mahmoud Khalil Al-Hussary</a></li>\
+		<li onclick='qori(\"minshawi\")'>Mohamed Siddiq al-Minshawi</a></li>\
+		<li onclick='qori(\"muhammadayyoub\")'>Muhammad Ayyub</a></li>\
+		<li onclick='qori(\"muhammadjibreel\")'>Muhammad Jibril</a></li>\
+		</ul>"+nav[0]+nav[1]+header+"</header>\
 		<div id='light'>\
 		<div id='gal'>"+h21+bsm+ay+"</div>\
 		</div>\
