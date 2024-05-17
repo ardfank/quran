@@ -103,6 +103,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	let surah=url.searchParams.get('surah');
 	let ayah=url.searchParams.get('ayah');
 	let q=url.searchParams.get('q');
+	let qori=url.searchParams.get('qori');
 	let mkey="";
 	let mdes="";
 	let mimg="https://cdn.networkreverse.com/OIG4.jpg";
@@ -112,6 +113,17 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	let bsm="";
 	let ay="";
 	let nav=[];
+	if (qori) {
+		qori=(qori=='ahmedajamy' || qori=='alafasy' || qori=='husarymujawwad' || qori=='minshawi' || qori=='muhammadayyoub' || qori=='muhammadjibreel')?qori:'alafasy';
+		let cQ=`posisi=${qori}; qori=${qori}; Max-Age=${60 * 60 * 24 * 60}; secure; SameSite=Strict`;
+		return new Response(null, {
+			status: 301,
+			headers: {
+				'Location': url.referer || '/',
+				'Set-Cookie': cQ
+			}
+		});
+	}
 	if(surah!=null && surah<1||surah>114){return Response.redirect(url.origin, 301);}
 	if (url.pathname === "/search") {
 		let taf="";
