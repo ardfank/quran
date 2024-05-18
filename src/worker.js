@@ -118,9 +118,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	let nav=[];
 	let qori=getCook('qori');
 	let posisi=getCook('posisi');
-	console.log(posisi!=="");
 	posisi=(posisi!=="")?`<hr/><li onclick='location.href="${posisi}"'>Bacaan sebelumnya</li>`:'';
-	console.log(posisi);
 	qori=(qori=='ahmedajamy' || qori=='alafasy' || qori=='husarymujawwad' || qori=='minshawi' || qori=='muhammadayyoub' || qori=='muhammadjibreel')?qori:'alafasy';
 	// let qori=url.searchParams.get('qori');
 	// if (qori) {
