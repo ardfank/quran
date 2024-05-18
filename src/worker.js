@@ -117,6 +117,10 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	let ay="";
 	let nav=[];
 	let qori=getCook('qori');
+	let posisi=getCook('posisi');
+	console.log(posisi!=="");
+	posisi=(posisi!=="")?`<hr/><li onclick='location.href="${posisi}"'>Bacaan sebelumnya</li>`:'';
+	console.log(posisi);
 	qori=(qori=='ahmedajamy' || qori=='alafasy' || qori=='husarymujawwad' || qori=='minshawi' || qori=='muhammadayyoub' || qori=='muhammadjibreel')?qori:'alafasy';
 	// let qori=url.searchParams.get('qori');
 	// if (qori) {
@@ -130,7 +134,6 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	// 		}
 	// 	});
 	// }
-	console.log(qori);
 	if(surah!=null && surah<1||surah>114){return Response.redirect(url.origin, 301);}
 	if (url.pathname === "/search") {
 		let taf="";
@@ -162,7 +165,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 				bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g[0].bismillah.arab+"</h3><h4 class='trj'>"+g[0].bismillah.translation+"</h4><audio preload='none' controls src='"+g[0].bismillah.audio[qori]+"'></audio></div>";
 			}
 			g[0].ayahs.forEach((b)=>{
-				ay+="<div class='responsive' id='"+b.number.inSurah+"'><h3 class='arab'>"+b.arab+"</h3><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><audio preload='none' controls src='"+b.audio[qori]+"'></audio><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"kemenag\")' value='Tafsir Al-Tahlili (Kemenag)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"quraish\")' value='Tafsir Al-Muntakhab (M. Quraish Shihab)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"jalalayn\")' value='Tafsir Al-Jalalain'/><div class='tafsir' id='t"+b.number.inSurah+"'></div></div>";
+				ay+="<div class='responsive' id='"+b.number.inSurah+"' onclick='posisi(\"/?surah="+surah+"#"+b.number.inSurah+"\")'><h3 class='arab'>"+b.arab+"</h3><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><audio preload='none' controls src='"+b.audio[qori]+"'></audio><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"kemenag\")' value='Tafsir Al-Tahlili (Kemenag)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"quraish\")' value='Tafsir Al-Muntakhab (M. Quraish Shihab)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"jalalayn\")' value='Tafsir Al-Jalalain'/><div class='tafsir' id='t"+b.number.inSurah+"'></div></div>";
 			});
 		});
 	}else{
@@ -181,15 +184,14 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 
 	let bod="<body>\
 		<div id='cont'>\
-		<header><input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='q' type='text' placeholder='Pencarian...' onchange='location.href=\"/search?q=\"+this.value'/>\
-		<input id='menu' type='button' onclick='toggleMenu()' value='🗣️'/>\
-		<ul id='menu-box' style='display:none'>\
-		<li onclick='qori(\"ahmedajamy\")'>Ahmad Al-Ajmi</a></li>\
-		<li onclick='qori(\"alafasy\")'>Mishari Rashid al-`Afasy</a></li>\
-		<li onclick='qori(\"husarymujawwad\")'>Mahmoud Khalil Al-Hussary</a></li>\
-		<li onclick='qori(\"minshawi\")'>Mohamed Siddiq al-Minshawi</a></li>\
-		<li onclick='qori(\"muhammadayyoub\")'>Muhammad Ayyub</a></li>\
-		<li onclick='qori(\"muhammadjibreel\")'>Muhammad Jibril</a></li>\
+		<header><input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='menu' type='button' onclick='toggleMenu()' value=' ⚙️ '/><input id='q' type='text' placeholder='Pencarian...' onchange='location.href=\"/search?q=\"+this.value'/>\
+		<ul id='menu-box' style='display:none'>Qori:\
+		<li onclick='qori(\"ahmedajamy\")'>Ahmad Al-Ajmi</li>\
+		<li onclick='qori(\"alafasy\")'>Mishari Rashid al-`Afasy</li>\
+		<li onclick='qori(\"husarymujawwad\")'>Mahmoud Khalil Al-Hussary</li>\
+		<li onclick='qori(\"minshawi\")'>Mohamed Siddiq al-Minshawi</li>\
+		<li onclick='qori(\"muhammadayyoub\")'>Muhammad Ayyub</li>\
+		<li onclick='qori(\"muhammadjibreel\")'>Muhammad Jibril</li>"+posisi+"\
 		</ul>"+nav[0]+nav[1]+header+"</header>\
 		<div id='light'>\
 		<div id='gal'>"+h21+bsm+ay+"</div>\
