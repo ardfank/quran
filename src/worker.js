@@ -118,7 +118,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	let nav=[];
 	let qori=getCook('qori');
 	let posisi=getCook('posisi');
-	posisi=(posisi!=="")?`<hr/><li onclick='location.href="${posisi}"'>Bacaan sebelumnya</li>`:'';
+	posisi=(posisi!=="")?`<input type='button' id='posisi' onclick='location.href="${posisi}"' value=' 📜 '/>`:'';
 	qori=(qori=='ahmedajamy' || qori=='alafasy' || qori=='husarymujawwad' || qori=='minshawi' || qori=='muhammadayyoub' || qori=='muhammadjibreel')?qori:'alafasy';
 	// let qori=url.searchParams.get('qori');
 	// if (qori) {
@@ -182,14 +182,14 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 
 	let bod="<body>\
 		<div id='cont'>\
-		<header><input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='menu' type='button' onclick='toggleMenu()' value=' ⚙️ '/><input id='q' type='text' placeholder='Pencarian...' onchange='location.href=\"/search?q=\"+this.value'/>\
-		<ul id='menu-box' style='display:none'>Qori:\
+		<header id='header'><input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='menu' type='button' onclick='toggleMenu()' value=' 🗣️ '/>"+posisi+"<input id='q' type='text' placeholder='Pencarian...' onchange='location.href=\"/search?q=\"+this.value'/>\
+		<ul id='menu-box' style='display:none'>\
 		<li onclick='qori(\"ahmedajamy\")'>Ahmad Al-Ajmi</li>\
 		<li onclick='qori(\"alafasy\")'>Mishari Rashid al-`Afasy</li>\
 		<li onclick='qori(\"husarymujawwad\")'>Mahmoud Khalil Al-Hussary</li>\
 		<li onclick='qori(\"minshawi\")'>Mohamed Siddiq al-Minshawi</li>\
 		<li onclick='qori(\"muhammadayyoub\")'>Muhammad Ayyub</li>\
-		<li onclick='qori(\"muhammadjibreel\")'>Muhammad Jibril</li>"+posisi+"\
+		<li onclick='qori(\"muhammadjibreel\")'>Muhammad Jibril</li>\
 		</ul>"+nav[0]+nav[1]+header+"</header>\
 		<div id='light'>\
 		<div id='gal'>"+h21+bsm+ay+"</div>\

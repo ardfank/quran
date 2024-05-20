@@ -9,6 +9,14 @@ function qori(q){
 }
 function posisi(q){
 	document.cookie=`posisi=${q};SameSite=Lax;secure;Max-Age=10368000;`;
+	let input=document.createElement('input');
+	input.type='button';input.id='posisi';input.onclick=function(){location.href=q;};input.value=' 📜 ';
+	let isP=document.getElementById('posisi');
+	let hsP=document.getElementById('header');
+	let qsP=document.getElementById('q');
+	if(!isP) {
+		hsP.insertBefore(input,qsP);
+	}
 }
 function toggleMenu() {
   var menuBox = document.getElementById('menu-box');
