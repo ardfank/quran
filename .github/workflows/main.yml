@@ -1,3 +1,4 @@
+name: Wrangler Deploy
 on:
   push:
     branches: [ master ]
