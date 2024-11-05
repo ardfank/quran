@@ -158,7 +158,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 			mdes=g[0].description.substring(0,150);
 			ttl="Surah "+g[0].number+" "+g[0].name+" ("+g[0].translation+") - Network Reverse";
 			h21="<h1><a href='"+url.href+"' rel='bookmark' title='"+g[0].name+" ("+g[0].translation+"'>"+g[0].name+" ("+g[0].translation+")</a></h1><h2>"+g[0].description+"</h2>";
-			header="<audio preload='none' controls src='"+g[0].audio+"'></audio>";
+			header="<audio preload='none' controls src='https://ia601601.us.archive.org/4/items/quraninindonesia/"+g[0].audio+"'></audio>";
 			if(surah!=1){
 				bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g[0].bismillah.arab+"</h3><h4 class='trj'>"+g[0].bismillah.translation+"</h4><audio preload='none' controls src='"+g[0].bismillah.audio[qori]+"'></audio></div>";
 			}
