@@ -1,0 +1,17 @@
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Wrangler Deploy
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install latest wrangler
+        run: /usr/local/bin/npm i wrangler
+      - name: Deploy Quran
+        uses: cloudflare/wrangler-action@v3.7.0
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          command: deploy
