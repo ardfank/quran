@@ -1,6 +1,9 @@
 import index from "./index.html";
 import ss from "./ss.html";
 import sm from "./sitemap.txt";
+function rad(){
+	return Math.floor(Math.random() * (114 - 1 + 1) ) + 1;
+}
 export default {
   async fetch(request, env, ctx) {
 	const QURL=`${env.QURL}`;
@@ -182,7 +185,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 
 	let bod="<body>\
 		<div id='cont'>\
-		<header id='header'><input type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input id='menu' type='button' onclick='toggleMenu()' value=' 🗣️ '/>"+posisi+"<input id='q' type='text' placeholder='Pencarian...' onchange='location.href=\"/search?q=\"+this.value'/>\
+		<header id='header'><input title='Random surah' type='button' onclick='location.href=\"/?surah="+rad()+"\"' value=' 🔀 '/><input title='Beranda' type='button' onclick='location.href=\"/\"' value=' 🏡 '/><input title='Ganti Qori' id='menu' type='button' onclick='toggleMenu()' value=' 🗣️ '/>"+posisi+"<input id='q' type='text' placeholder='Pencarian...' onchange='location.href=\"/search?q=\"+this.value'/>\
 		<ul id='menu-box' style='display:none'>\
 		<li onclick='qori(\"ahmedajamy\")'>Ahmad Al-Ajmi</li>\
 		<li onclick='qori(\"alafasy\")'>Mishari Rashid al-`Afasy</li>\
