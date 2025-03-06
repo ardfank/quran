@@ -171,6 +171,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 		});
 	}else{
 		await f.main(QURL,(g)=>{
+			console.log(JSON.stringify(g));
 			nav.push(`<input style='float:left' type='button' onclick='location.href="/?surah=114"' value='⏪ Al-Nas'/>`,`<input style='float:right' type='button' onclick='location.href="/?surah=1"' value='Al-Fatihah ⏩'/>`);
 			mdes="Al-Quran Terjemahan dan Tafsir dari Tafsir Kemenag Tafsir Al-Tahlili, Tafsir Al-Muntakhab (M. Quraish Shihab), Tafsir Al-Jalalain. Audio dengan terjemahan bahasa Indonesia - Network Reverse";
 			mkey=mdes.replace(/ /g,",");
@@ -178,7 +179,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 			h21="<h1><a href='"+url.href+"' rel='bookmark' title='"+ttl+"'>Al-Quran - Audio, Terjemahan dan Tafsir</a></h1><h2>"+mdes+"</h2>";
 			bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g.bismillah.arab+"</h3><h4 class='trj'>"+g.bismillah.translation+"</h4><audio preload='none' controls src='"+g.bismillah.audio[qori]+"'></audio></div>";
 			g.forEach((b)=>{
-				ay+="<div class='responsive' id='"+b.number+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><h4 class='trj'>"+b.desc+"</h4><audio preload='none' controls src='"+b.audio+"'></audio></div>";
+				ay+="<div class='responsive' id='"+b.number+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><h4 class='trj'>"+b.desc+"</h4><audio preload='none' controls src='https://ia601601.us.archive.org/4/items/quraninindonesia/"+b.audio+"'></audio></div>";
 			})
 		});
 	}

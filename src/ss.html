@@ -44,10 +44,14 @@ if(tfs==='jalalayn'||tfs==='quraish'||tfs==='kemenag'){
 	tafs(srh,aht,tfs);
 }
 const audios = document.getElementsByTagName('audio');
+// audios[0].addEventListener('ended', () => {
+// 	console.log('asdasdasd');
+// });
 for (let i = 0; i < audios.length; i++) {
 	audios[i].addEventListener('ended', () => {
 		audios[(i + 1) % audios.length].play();
 		location.hash=i;window.scrollBy(0,-100);
-});
+		document.cookie=`posisi=${location.href};SameSite=Lax;secure;Max-Age=10368000;`;
+	});
 }
 </script>
