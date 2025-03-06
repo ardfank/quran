@@ -39,19 +39,32 @@ async function tafs(s,a,t){
 const url = new URL(location.href);
 let tfs=url.searchParams.get('tafsir');
 let aht=url.searchParams.get('ayat');
-let srh=url.searchParams.get('surah');
+let surah=url.searchParams.get('surah');
 if(tfs==='jalalayn'||tfs==='quraish'||tfs==='kemenag'){
-	tafs(srh,aht,tfs);
+	tafs(surah,aht,tfs);
 }
 const audios = document.getElementsByTagName('audio');
-// audios[0].addEventListener('ended', () => {
-// 	console.log('asdasdasd');
-// });
-for (let i = 0; i < audios.length; i++) {
-	audios[i].addEventListener('ended', () => {
-		audios[(i + 1) % audios.length].play();
-		location.hash=i;window.scrollBy(0,-100);
-		document.cookie=`posisi=${location.href};SameSite=Lax;secure;Max-Age=10368000;`;
+if(surah!=null && surah < 115 && Number.isInteger(parseInt(surah))){
+	audios[0].addEventListener('ended', () => {
+		surah=(surah<114)?surah:0;
+		audios[0].src="https://ia601601.us.archive.org/4/items/quraninindonesia/"+aud[surah];audios[0].play();
+		surah++;
+		document.cookie=`posisi=/?surah=${surah};SameSite=Lax;secure;Max-Age=10368000;`;
 	});
+	for (let i = 1; i < audios.length; i++) {
+		audios[i].addEventListener('ended', () => {
+			audios[(i + 1) % audios.length].play();
+			location.hash=i;window.scrollBy(0,-100);
+			document.cookie=`posisi=${location.href};SameSite=Lax;secure;Max-Age=10368000;`;
+		});
+	}
+}else{
+	for (let i = 0; i < audios.length; i++) {
+		audios[i].addEventListener('ended', () => {
+			audios[(i + 1) % audios.length].play();
+			location.hash=i;window.scrollBy(0,-100);
+			document.cookie=`posisi=${location.href};SameSite=Lax;secure;Max-Age=10368000;`;
+		});
+	}
 }
 </script>

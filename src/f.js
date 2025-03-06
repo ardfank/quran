@@ -9,11 +9,15 @@ async function main(qurl,b){
 }
 async function surah(qurl,a,b){
 	let data= await fetch(qurl).then(g=>{return g.json()});
-	let sr=[];
+	let sr=[];let au=[];
 	let next=(data[(a+1)]!==undefined)?data[(a+1)].name:'';
 	let prev=(data[(a-1)]!==undefined)?data[(a-1)].name:'';
 	data[a].next=next;
 	data[a].prev=prev;
+	data.forEach(s=>{
+		au.push(s.audio);
+	});
+	data[a].audios=au;
 	sr.push(data[a]);
 	b(sr);
 }

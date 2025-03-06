@@ -118,6 +118,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	let header="";
 	let bsm="";
 	let ay="";
+	let aud="";
 	let nav=[];
 	let qori=getCook('qori');
 	let posisi=getCook('posisi');
@@ -154,6 +155,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	}else if(surah!=null && surah < 115 && Number.isInteger(parseInt(surah)) && ayah===null && q===null){
 		surah=((surah-1)<0)?1:surah;
 		await f.surah(QURL,(surah-1),(g)=>{
+			aud="<script>let aud=JSON.parse('"+JSON.stringify(g[0].audios)+"');</script>";
 			let prev=(g[0].prev==='')?`<input style='float:left' type='button' onclick='location.href="/?surah=114"' value='⏪ Al-Nas'/>`:`<input style='float:left' type='button' onclick='location.href="/?surah=${(parseInt(surah)-1)}"' value="⏪ ${g[0].prev}"/>`;
 			let next=(g[0].next==='')?`<input style='float:right' type='button' onclick='location.href="/?surah=1"' value='Al-Fatihah ⏩'/>`:`<input style='float:right' type='button' onclick='location.href="/?surah=${(parseInt(surah)+1)}"' value="${g[0].next} ⏩"/>`;
 			nav.push(prev,next);
@@ -171,15 +173,14 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 		});
 	}else{
 		await f.main(QURL,(g)=>{
-			console.log(JSON.stringify(g));
 			nav.push(`<input style='float:left' type='button' onclick='location.href="/?surah=114"' value='⏪ Al-Nas'/>`,`<input style='float:right' type='button' onclick='location.href="/?surah=1"' value='Al-Fatihah ⏩'/>`);
 			mdes="Al-Quran Terjemahan dan Tafsir dari Tafsir Kemenag Tafsir Al-Tahlili, Tafsir Al-Muntakhab (M. Quraish Shihab), Tafsir Al-Jalalain. Audio dengan terjemahan bahasa Indonesia - Network Reverse";
 			mkey=mdes.replace(/ /g,",");
 			ttl="Al-Quran - Audio, Terjemahan dan Tafsir - Network Reverse";
 			h21="<h1><a href='"+url.href+"' rel='bookmark' title='"+ttl+"'>Al-Quran - Audio, Terjemahan dan Tafsir</a></h1><h2>"+mdes+"</h2>";
-			bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g.bismillah.arab+"</h3><h4 class='trj'>"+g.bismillah.translation+"</h4><audio preload='none' controls src='"+g.bismillah.audio[qori]+"'></audio></div>";
+			bsm="<div class='responsive' style='text-align: center;'><h3 class='arab'>"+g.bismillah.arab+"</h3><h4 class='trj'>"+g.bismillah.translation+"</h4><audio preload='none' controls src='"+g.bismillah.audio[qori]+"'></audio></div>";
 			g.forEach((b)=>{
-				ay+="<div class='responsive' id='"+b.number+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><h4 class='trj'>"+b.desc+"</h4><audio preload='none' controls src='https://ia601601.us.archive.org/4/items/quraninindonesia/"+b.audio+"'></audio></div>";
+				ay+="<div class='responsive' id='"+(parseInt(b.number)-1)+"' onclick='location.href=\"/?surah="+b.number+"\"'><h3 class='arab'>"+b.name+" ("+b.translation+")</h3><h4 class='trj'>"+b.desc+"</h4><audio preload='none' controls src='https://ia601601.us.archive.org/4/items/quraninindonesia/"+b.audio+"'></audio></div>";
 			})
 		});
 	}
@@ -232,7 +233,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 		<meta name='theme-color' content='#B12A34'/>\
 		<title>"+ttl+"</title>\
 		<link rel='icon' type='image/x-icon' href='https://www.networkreverse.com/favicon.ico'>";
-	let hix=nih+index+bod+ss+"</body></html>";
+	let hix=nih+aud+index+bod+ss+"</body></html>";
 	return new Response(hix, {
 		headers: {
 			"content-type": "text/html;charset=UTF-8",
