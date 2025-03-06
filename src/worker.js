@@ -195,7 +195,7 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 		<li onclick='qori(\"minshawi\")'>Mohamed Siddiq al-Minshawi</li>\
 		<li onclick='qori(\"muhammadayyoub\")'>Muhammad Ayyub</li>\
 		<li onclick='qori(\"muhammadjibreel\")'>Muhammad Jibril</li>\
-		</ul>"+nav[0]+nav[1]+header+"</header>\
+		</ul><br/>"+nav[0]+nav[1]+header+"</header>\
 		<div id='light'>\
 		<div id='gal'>"+h21+bsm+ay+"</div>\
 		</div>\
