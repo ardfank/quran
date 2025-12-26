@@ -124,6 +124,14 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 	let posisi=getCook('posisi');
 	posisi=(posisi!=="")?`<input type='button' id='posisi' onclick='location.href="${posisi}"' value=' 📜 '/>`:'';
 	qori=(qori=='ahmedajamy' || qori=='alafasy' || qori=='husarymujawwad' || qori=='minshawi' || qori=='muhammadayyoub' || qori=='muhammadjibreel')?qori:'alafasy';
+	const qori2={
+		'ahmedajamy': 'ahmed_ibn_ali_al_ajamy_128kbps',
+		'alafasy': 'Alafasy_128kbps',
+		'husarymujawwad': 'Husary_128kbps',
+		'minshawi': 'Minshawy_Murattal_128kbps',
+		'muhammadayyoub': 'Muhammad_Ayyoub_128kbps',
+		'muhammadjibreel': 'Muhammad_Jibreel_128kbps'
+	}
 	// let qori=url.searchParams.get('qori');
 	// if (qori) {
 	// 	console.log(url);
@@ -165,10 +173,16 @@ Sitemap: https://quran.networkreverse.com/sitemap.xml';
 			h21="<h1><a href='"+url.href+"' rel='bookmark' title='"+g[0].name+" ("+g[0].translation+"'>"+g[0].name+" ("+g[0].translation+")</a></h1><h2>"+g[0].description+"</h2>";
 			header="<audio preload='none' controls src='https://ia601601.us.archive.org/4/items/quraninindonesia/"+g[0].audio+"'></audio>";
 			if(surah!=1){
-				bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g[0].bismillah.arab+"</h3><h4 class='trj'>"+g[0].bismillah.translation+"</h4><audio preload='none' controls src='"+g[0].bismillah.audio[qori]+"'></audio></div>";
+				bsm="<div class='responsive' id='1' style='text-align: center;'><h3 class='arab'>"+g[0].bismillah.arab+"</h3><h4 class='trj'>"+g[0].bismillah.translation+"</h4><audio preload='none' controls src='https://everyayah.com/data/"+qori2[qori]+"/001001.mp3?t=1766740589073'></audio></div>";
 			}
 			g[0].ayahs.forEach((b)=>{
-				ay+="<div class='responsive' id='"+b.number.inSurah+"' onclick='posisi(\"/?surah="+surah+"#"+b.number.inSurah+"\")'><h3 class='arab'>"+b.arab+"</h3><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4><audio preload='none' controls src='"+b.audio[qori]+"'></audio><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"kemenag\")' value='Tafsir Al-Tahlili (Kemenag)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"quraish\")' value='Tafsir Al-Muntakhab (M. Quraish Shihab)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"jalalayn\")' value='Tafsir Al-Jalalain'/><div class='tafsir' id='t"+b.number.inSurah+"'></div></div>";
+				const everyayah='https://everyayah.com/data/'+qori2[qori]+'/'+surah.padStart(3, '0')+''+String(b.number.inSurah).padStart(3, '0')+'.mp3?t='+Date.now();
+				ay+="<div class='responsive' id='"+b.number.inSurah+"' onclick='posisi(\"/?surah="+surah+"#"+b.number.inSurah+"\")'><h3 class='arab'>"+b.arab+"</h3><h4 class='trj'>"+b.number.inSurah+". "+b.translation+"</h4>\
+				<audio preload='none' controls>\
+				  <source src='"+everyayah+"'>\
+				  <source src='"+b.audio[qori]+"'>\
+				</audio>\
+				<input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"kemenag\")' value='Tafsir Al-Tahlili (Kemenag)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"quraish\")' value='Tafsir Al-Muntakhab (M. Quraish Shihab)'/><input type='button' onclick='tafs("+surah+","+b.number.inSurah+",\"jalalayn\")' value='Tafsir Al-Jalalain'/><div class='tafsir' id='t"+b.number.inSurah+"'></div></div>";
 			});
 		});
 	}else{
