@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install latest wrangler
-        run: /usr/local/bin/npm i wrangler
+        run: /usr/local/bin/npm i -g wrangler --no-audit --no-fund
       - name: Deploy Quran
         uses: cloudflare/wrangler-action@v4.0.0
         with:
